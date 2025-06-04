@@ -121,7 +121,7 @@ function validateInquiryData(applicationNumber, nationalId, birthDate, phoneNumb
 // Check if student data matches records
 function checkStudentData(applicationNumber, nationalId, phoneNumber) {
     // Check against Atheer Al-Dosari's data
-    const correctApplicationNumber = 'APP2024001234';
+    const correctApplicationNumber = 'APP202500146';
     const correctNationalId = '1139150252';
     const correctPhoneNumber = '0566781458';
     
@@ -288,7 +288,7 @@ function printInvoice() {
 }
 
 function copyAccountNumber() {
-    const accountNumber = 'SA1234567890123456789';
+    const accountNumber = 'SA5880000109608016558132';
     
     if (navigator.clipboard) {
         navigator.clipboard.writeText(accountNumber).then(() => {
