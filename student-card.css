@@ -1,0 +1,479 @@
+/* تنسيقات البطاقة الجامعية */
+
+.student-card-section {
+    margin-bottom: 40px;
+}
+
+.card-container {
+    perspective: 1000px;
+    margin: 0 auto 30px;
+    width: 600px;
+    height: 620px;
+    position: relative;
+}
+
+.student-card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);
+    border: 3px solid var(--primary-color);
+    overflow: hidden;
+}
+
+.student-card.back {
+    transform: rotateY(180deg);
+}
+
+.card-container.flipped .student-card.front {
+    transform: rotateY(-180deg);
+}
+
+.card-container.flipped .student-card.back {
+    transform: rotateY(0deg);
+}
+
+/* رأس البطاقة */
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+}
+
+.university-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.university-logo-card {
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+    border: 2px solid var(--primary-color);
+    margin: 0 10px;
+    padding: 0;
+}
+
+.university-logo-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+.university-text h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.university-text p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* جسم البطاقة */
+.card-body {
+    padding: 25px;
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.student-photo {
+    flex-shrink: 0;
+}
+
+.student-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    object-fit: cover;
+}
+
+.student-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: var(--dark-gray);
+    font-size: 0.85rem;
+    min-width: 80px;
+}
+
+.detail-row .value {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+/* تذييل البطاقة */
+.card-footer {
+    padding: 15px 25px;
+    background: rgba(37, 99, 235, 0.05);
+    border-top: 1px solid var(--medium-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.validity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.validity .label {
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+.validity .value {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.card-number {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* الوجه الخلفي للبطاقة */
+.student-card.back .card-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.student-card.back .card-body {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 25px;
+}
+
+.terms-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.terms-list li {
+    padding: 8px 0;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--medium-gray);
+    position: relative;
+    padding-right: 20px;
+}
+
+.terms-list li:before {
+    content: '•';
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.contact-info h4 {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 0.75rem;
+    color: var(--dark-gray);
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.qr-code {
+    text-align: center;
+}
+
+.qr-placeholder {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed var(--medium-gray);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: var(--dark-gray);
+}
+
+.qr-placeholder i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.qr-placeholder p {
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.student-card.back .card-footer {
+    text-align: center;
+    padding: 10px;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    color: var(--dark-gray);
+    margin: 0;
+}
+
+/* أزرار التحكم */
+.card-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card-controls .btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--dark-gray), #475569);
+    color: var(--white);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, var(--info-color), #1d4ed8);
+    color: var(--white);
+}
+
+.card-controls .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* المعلومات الإضافية */
+.additional-info .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.status-active {
+    color: var(--secondary-color) !important;
+    font-weight: 600;
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: rgba(37, 99, 235, 0.1);
+    transform: translateX(-5px);
+}
+
+.service-item i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.service-item span {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+    .card-container {
+        width: 100%;
+        max-width: 500px;
+        height: 320px;
+    }
+    
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .student-photo img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+    
+    .detail-row .value {
+        text-align: center;
+    }
+    
+    .card-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card-controls .btn {
+        width: 200px;
+        justify-content: center;
+    }
+    
+    .additional-info .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        height: 280px;
+    }
+    
+    .card-header {
+        padding: 15px;
+    }
+    
+    .university-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .university-logo-card {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .university-logo-card img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .university-text h2 {
+        font-size: 1rem;
+    }
+    
+    .university-text p {
+        font-size: 0.8rem;
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .student-photo img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .detail-row .label,
+    .detail-row .value {
+        font-size: 0.8rem;
+    }
+}
+
+/* تأثيرات الطباعة */
+@media print {
+    .sidebar,
+    .top-header,
+    .card-controls,
+    .additional-info {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .student-card {
+        box-shadow: none;
+        border: 2px solid #000;
+        page-break-inside: avoid;
+    }
+    
+    .card-container {
+        width: 100%;
+        height: auto;
+        perspective: none;
+    }
+    
+    .student-card.back {
+        transform: none;
+        margin-top: 20px;
+    }
+}
+

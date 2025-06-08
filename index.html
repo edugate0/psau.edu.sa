@@ -3,404 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة القبول - جامعة الأمير سطام بن عبدالعزيز</title>
+    <title>بوابة الطالب - جامعة الأمير سطام بن عبدالعزيز</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <img src="logo.svg" alt="شعار الجامعة" class="logo">
-                    <div class="university-info">
-                        <h3>جامعة الأمير سطام بن عبدالعزيز</h3>
-                        <p>Prince Sattam bin Abdulaziz University</p>
-                    </div>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="university-header">
+                <div class="university-logo">
+                    <!-- شعار الجامعة كصورة -->
+                    <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width: 70px; height: 70px; object-fit: contain; display: block; margin: 0 auto 8px;">
+                    <!-- أيقونة قديمة يمكن حذفها إذا رغبت -->
+                    <!-- <i class="fas fa-graduation-cap"></i> -->
                 </div>
+                <h1>جامعة الأمير سطام بن عبدالعزيز</h1>
+                <h2>Prince Sattam bin Abdulaziz University</h2>
+                <p class="portal-title">بوابة الطالب الأكاديمية</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="studentId">الرقم الجامعي *</label>
+                    <input type="text" id="studentId" name="studentId" placeholder="مثال: 202500145" required>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">كلمة المرور *</label>
+                    <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                    <i class="fas fa-lock input-icon"></i>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        تذكرني
+                    </label>
+                    <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </button>
+            </form>
+            
+            <div class="security-notice">
+                <i class="fas fa-shield-alt"></i>
+                <p>جميع البيانات المدخلة محمية ومشفرة طبقاً لمعايير الأمان العالمية</p>
             </div>
         </div>
-    </header>
-
-    <!-- Progress Bar -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
-        <div class="container">
-            <div class="progress-bar">
-                <div class="step active" data-step="1">
-                    <div class="step-number">1</div>
-                    <span>بيانات القبول</span>
-                </div>
-                <div class="step" data-step="2">
-                    <div class="step-number">2</div>
-                    <span>تأكيد القبول</span>
-                </div>
-                <div class="step" data-step="3">
-                    <div class="step-number">3</div>
-                    <span>السداد</span>
-                </div>
-                <div class="step" data-step="4">
-                    <div class="step-number">4</div>
-                    <span>إيصال السداد</span>
-                </div>
-            </div>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">الدعم الفني</a>
+            <a href="#" class="footer-link">سياسة الخصوصية</a>
+            <a href="#" class="footer-link">الشروط والأحكام</a>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 جامعة الأمير سطام بن عبدالعزيز - جميع الحقوق محفوظة</p>
         </div>
     </div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Inquiry Step: Search for Admission -->
-            <section id="inquiry-step" class="step-content active">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-search"></i> الاستعلام عن القبول</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="inquiry-section">
-                            <div class="welcome-message">
-                                <div class="welcome-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <h3>مرحباً بك في بوابة القبول</h3>
-                                <p>يرجى إدخال البيانات التالية للاستعلام عن حالة قبولك</p>
-                            </div>
-                            
-                            <form class="inquiry-form" id="inquiryForm">
-                                <div class="form-group">
-                                    <label for="applicationNumber">رقم طلب القبول <span class="required">*</span></label>
-                                    <input type="text" id="applicationNumber" name="applicationNumber" required 
-                                           placeholder="مثال: APP2024001234" maxlength="15">
-                                    <small class="form-hint">رقم الطلب المرسل لك عبر الرسائل النصية أو البريد الإلكتروني</small>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="nationalId">رقم الهوية الوطنية <span class="required">*</span></label>
-                                    <input type="text" id="nationalId" name="nationalId" required 
-                                           placeholder="أدخل رقم الهوية (10 أرقام)" maxlength="10">
-                                    <small class="form-hint">يجب أن يتكون رقم الهوية من 10 أرقام</small>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="birthDate">تاريخ الميلاد <span class="required">*</span></label>
-                                    <input type="date" id="birthDate" name="birthDate" required>
-                                    <small class="form-hint">حسب التاريخ الهجري المدون في الهوية الوطنية</small>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="phoneNumber">رقم الجوال <span class="required">*</span></label>
-                                    <input type="tel" id="phoneNumber" name="phoneNumber" required 
-                                           placeholder="05xxxxxxxx" maxlength="10">
-                                    <small class="form-hint">رقم الجوال المسجل في طلب القبول</small>
-                                </div>
-                                
-                                <div class="security-info">
-                                    <div class="security-icon">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <div class="security-text">
-                                        <h4>حماية البيانات</h4>
-                                        <p>جميع البيانات المدخلة محمية ومشفرة طبقاً لمعايير الأمان العالمية</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-large">
-                                        <i class="fas fa-search"></i>
-                                        البحث عن القبول
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 1: Student Information -->
-            <section id="step-1" class="step-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-user-graduate"></i> بيانات الطالبة</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="admission-info">
-                            <div class="info-row">
-                                <label>الاسم الكامل:</label>
-                                <span>أثير قبلان منير الدوسري</span>
-                            </div>
-                            <div class="info-row">
-                                <label>رقم الهوية:</label>
-                                <span>1139150252</span>
-                            </div>
-                            <div class="info-row">
-                                <label>البريد الإلكتروني:</label>
-                                <span>s0549514131@gmail.com</span>
-                            </div>
-                            <div class="info-row">
-                                <label>رقم الجوال:</label>
-                                <span>0566781458</span>
-                            </div>
-                            <div class="info-row">
-                                <label>التخصص المقبولة فيه:</label>
-                                <span class="specialty">بكالوريوس رياض أطفال</span>
-                            </div>
-                            <div class="scores-section">
-                                <h3>الدرجات:</h3>
-                                <div class="scores-grid">
-                                    <div class="score-item">
-                                        <label>التحصيلي:</label>
-                                        <span class="score">55</span>
-                                    </div>
-                                    <div class="score-item">
-                                        <label>القدرات:</label>
-                                        <span class="score">58</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-primary" onclick="nextStep(2)">
-                                التالي <i class="fas fa-arrow-left"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 2: Admission Confirmation -->
-            <section id="step-2" class="step-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-check-circle"></i> تأكيد القبول</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="confirmation-section">
-                            <div class="admission-notice">
-                                <div class="notice-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <h3>تهانينا! تم قبولك في</h3>
-                                <p class="specialty-name">بكالوريوس رياض أطفال</p>
-                                <div class="deadline-info">
-                                    <i class="fas fa-clock"></i>
-                                    <span>آخر موعد لتأكيد القبول: 05/06/2025</span>
-                                </div>
-                            </div>
-                            
-                            <div class="confirmation-options">
-                                <h4>يرجى اختيار أحد الخيارات التالية:</h4>
-                                <div class="options-container">
-                                    <button class="option-btn accept-btn" onclick="confirmAdmission(true)">
-                                        <i class="fas fa-check"></i>
-                                        <span>أؤكد قبولي</span>
-                                    </button>
-                                    <button class="option-btn reject-btn" onclick="confirmAdmission(false)">
-                                        <i class="fas fa-times"></i>
-                                        <span>أرفض القبول</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-secondary" onclick="prevStep(1)">
-                                <i class="fas fa-arrow-right"></i> السابق
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 3: Payment Information -->
-            <section id="step-3" class="step-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-credit-card"></i> معلومات السداد</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="payment-info">
-                            <div class="success-message">
-                                <i class="fas fa-check-circle"></i>
-                                <h3>تم تأكيد قبولك بنجاح!</h3>
-                                <p>يرجى إتمام عملية السداد لاستكمال التسجيل</p>
-                            </div>
-                            
-                            <!-- Invoice -->
-                            <div class="invoice" id="invoice">
-                                <div class="invoice-header">
-                                    <h3>فاتورة الرسوم الدراسية</h3>
-                                    <div class="invoice-number">
-                                        رقم الفاتورة: <span id="invoiceNumber"></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="invoice-details">
-                                    <div class="student-info">
-                                        <h4>بيانات الطالبة:</h4>
-                                        <p>الاسم: أثير قبلان منير الدوسري</p>
-                                        <p>رقم الهوية: 1139150252</p>
-                                        <p>التخصص: بكالوريوس رياض أطفال</p>
-                                    </div>
-                                    
-                                    <div class="fees-breakdown">
-                                        <h4>تفاصيل الرسوم:</h4>
-                                        <div class="fee-item">
-                                        </div>
-                                        <div class="fee-item">
-                                            <span>رسوم التسجيل المتبقية</span>
-                                            <span>500 ريال</span>
-                                        </div>
-                                        <div class="fee-item total">
-                                            <span>المجموع الكلي</span>
-                                            <span>500 ريال</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Bank Account Details -->
-                            <div class="bank-details">
-                                <h3><i class="fas fa-university"></i> تفاصيل الحساب البنكي</h3>
-                                <div class="account-info">
-                                    <div class="account-item">
-                                        <label>اسم البنك:</label>
-                                        <span>البنك الراجحي </span>
-                                    </div>
-                                    <div class="account-item">
-                                        <label>رقم الحساب:</label>
-                                        <span class="account-number">SA5880000109608016558132</span>
-                                        <button class="copy-btn" onclick="copyAccountNumber()">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
-                                    </div>
-                                    <div class="account-item">
-                                        <label>المبلغ المطلوب:</label>
-                                        <span class="amount">500 ريال </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-actions">
-                            <button class="btn btn-secondary" onclick="prevStep(2)">
-                                <i class="fas fa-arrow-right"></i> السابق
-                            </button>
-                            <button class="btn btn-primary" onclick="printInvoice()">
-                                <i class="fas fa-print"></i> طباعة الفاتورة
-                            </button>
-                            <button class="btn btn-primary" onclick="nextStep(4)">
-                                التالي <i class="fas fa-arrow-left"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 4: Receipt Upload -->
-            <section id="step-4" class="step-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-upload"></i> رفع إيصال السداد</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="upload-section">
-                            <div class="upload-instructions">
-                                <h3>إرشادات رفع الإيصال:</h3>
-                                <ul>
-                                    <li>يجب أن يكون الإيصال واضحاً ومقروءاً</li>
-                                    <li>الصيغ المقبولة: JPG, PNG, PDF</li>
-                                    <li>حجم الملف لا يتجاوز 5 ميجابايت</li>
-                                    <li>يجب أن يظهر في الإيصال مبلغ 500 ريال</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="upload-area" id="uploadArea">
-                                <div class="upload-content">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <h4>اسحب الملف هنا أو اضغط للتحديد</h4>
-                                    <p>JPG, PNG, PDF - حتى 5MB</p>
-                                    <input type="file" id="receiptFile" accept=".jpg,.jpeg,.png,.pdf" hidden>
-                                </div>
-                            </div>
-                            
-                            <div class="uploaded-file" id="uploadedFile" style="display: none;">
-                                <div class="file-info">
-                                    <i class="fas fa-file-alt"></i>
-                                    <div class="file-details">
-                                        <span class="file-name" id="fileName"></span>
-                                        <span class="file-size" id="fileSize"></span>
-                                    </div>
-                                    <button class="remove-file" onclick="removeFile()">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="submission-section" id="submissionSection" style="display: none;">
-                                <div class="success-upload">
-                                    <i class="fas fa-check-circle"></i>
-                                    <h3>تم رفع الإيصال بنجاح!</h3>
-                                    <p>سيتم مراجعة الإيصال خلال 24-48 ساعة</p>
-                                </div>
-                                
-                                <div class="reference-number">
-                                    <label>رقم المرجع:</label>
-                                    <span id="referenceNumber"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-actions">
-                            <button class="btn btn-secondary" onclick="prevStep(3)">
-                                <i class="fas fa-arrow-right"></i> السابق
-                            </button>
-                            <button class="btn btn-primary" id="submitBtn" onclick="submitReceipt()" disabled>
-                                <i class="fas fa-paper-plane"></i> إرسال الإيصال
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Rejection Message -->
-            <section id="rejection-message" class="step-content">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="rejection-content">
-                            <i class="fas fa-times-circle rejection-icon"></i>
-                            <h2>تم رفض القبول</h2>
-                            <p>تم تسجيل رفضك للقبول في تخصص بكالوريوس رياض أطفال</p>
-                            <p>نتمنى لك التوفيق في مسيرتك التعليمية</p>
-                            <button class="btn btn-primary" onclick="location.reload()">
-                                <i class="fas fa-home"></i> العودة للبداية
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 جامعة الأمير سطام بن عبدالعزيز - جميع الحقوق محفوظة</p>
-                <div class="footer-links">
-                    <a href="#">الدعم الفني</a>
-                    <a href="#">سياسة الخصوصية</a>
-                    <a href="#">الشروط والأحكام</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-        <p>جاري المعالجة...</p>
-    </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
+

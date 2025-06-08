@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - بوابة الطالب</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="university-logo">
+                    <!-- شعار الجامعة كصورة -->
+                    <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width: 60px; height: 60px; object-fit: contain; display: block; margin: 0 auto 8px;">
+                </div>
+                <h3>بوابة الطالب</h3>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="course-registration.html" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>تسجيل المقررات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="student-card.html" class="nav-link">
+                            <i class="fas fa-id-card"></i>
+                            <span>البطاقة الجامعية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="payment.html" class="nav-link">
+                            <i class="fas fa-credit-card"></i>
+                            <span>السداد</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html" class="nav-link">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>الفواتير</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="academic-record.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>السجل الأكاديمي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="schedule.html" class="nav-link">
+                            <i class="fas fa-calendar"></i>
+                            <span>الجدول الدراسي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="deferment.html" class="nav-link">
+                            <i class="fas fa-pause"></i>
+                            <span>التأجيل</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- الشريط العلوي -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>لوحة التحكم</h1>
+                    <p>مرحباً بك في بوابة الطالب الأكاديمية</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="studentimage.jpg" alt="صورة الطالب" id="userImage" class="user-avatar">
+                        <div class="user-details">
+                    <p>أثير قبلان منير الدوسري</p>
+                            <span class="user-id">202500145</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- التنبيهات -->
+            <section class="notifications-section">
+                <div id="notifications"></div>
+            </section>
+            
+            <!-- الإحصائيات السريعة -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="registeredCourses">0</h3>
+                            <p>المقررات المسجلة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completedHours">0</h3>
+                            <p>الساعات المكتملة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="currentGPA">-</h3>
+                            <p>المعدل التراكمي</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="outstandingAmount">2000</h3>
+                            <p>الرسوم المستحقة (ريال)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- الخدمات السريعة -->
+            <section class="quick-services">
+                <h2>الخدمات السريعة</h2>
+                <div class="services-grid">
+                    <a href="course-registration.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>تسجيل المقررات</h3>
+                        <p>إضافة وحذف المقررات الدراسية</p>
+                    </a>
+                    
+                    <a href="payment.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>سداد الرسوم</h3>
+                        <p>دفع الرسوم الدراسية والخدمات</p>
+                    </a>
+                    
+                    <a href="student-card.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-id-badge"></i>
+                        </div>
+                        <h3>البطاقة الجامعية</h3>
+                        <p>عرض وطباعة البطاقة الجامعية</p>
+                    </a>
+                    
+                    <a href="academic-record.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>السجل الأكاديمي</h3>
+                        <p>عرض الدرجات والمعدلات</p>
+                    </a>
+                    
+                    <a href="schedule.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>الجدول الدراسي</h3>
+                        <p>عرض جدول المحاضرات والامتحانات</p>
+                    </a>
+                    
+                    <a href="deferment.html" class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-pause-circle"></i>
+                        </div>
+                        <h3>طلب التأجيل</h3>
+                        <p>تأجيل الفصل الدراسي</p>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- معلومات الطالب -->
+            <section class="student-info">
+                <h2>معلومات الطالب</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>البيانات الأساسية</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">الاسم:</span>
+                                <span class="info-value" id="userName">أثير قبلان منير الدوسري </span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">الرقم الجامعي:</span>
+                                <span class="info-value">202500145</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">البريد الإلكتروني:</span>
+                                <span class="info-value" id="userEmail">s0549514131@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>البيانات الأكاديمية</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">الكلية:</span>
+                                <span class="info-value" id="userCollege">كلية التربية</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">التخصص:</span>
+                                <span class="info-value" id="userMajor"> رياض اطفال</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">المستوى:</span>
+                                <span class="info-value" id="userLevel">المستوى الأول</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - جامعة الأمير سطام بن عبدالعزيز</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* تحسين عرض بيانات الملف الشخصي */
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px 32px;
+            margin-bottom: 10px;
+        }
+        .profile-info-item label {
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .profile-info-item input[readonly] {
+            background: #f5f7fa;
+            border: 1px solid #e0e7ef;
+            color: #222;
+            font-weight: 500;
+            border-radius: 7px;
+            padding: 7px 12px;
+            width: 100%;
+            margin-bottom: 0;
+        }
+        .profile-info-item input:focus {
+            outline: 2px solid #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="university-logo">
+                <!-- شعار الجامعة SVG كصورة -->
+                <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width:60px;height:60px;object-fit:contain;display:block;margin:0 auto;">
+            </div>
+            <h1>الإعدادات</h1>
+        </div>
+
+        <div class="settings-content">
+            <div class="settings-nav">
+                <button class="nav-item active" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    الملف الشخصي
+                </button>
+                <button class="nav-item" data-tab="security">
+                    <i class="fas fa-shield-alt"></i>
+                    الأمان
+                </button>
+                <button class="nav-item" data-tab="notifications">
+                    <i class="fas fa-bell"></i>
+                    الإشعارات
+                </button>
+                <button class="nav-item" data-tab="preferences">
+                    <i class="fas fa-cog"></i>
+                    التفضيلات
+                </button>
+            </div>
+
+            <section class="student-details">
+            <div class="settings-panels">
+                <!-- الملف الشخصي -->
+                <div class="settings-panel active" id="profile">
+                    <h2>الملف الشخصي</h2>
+                    <form id="profileForm">
+                        <div class="form-section">
+                            <h3>المعلومات الشخصية</h3>
+                            <div class="profile-info-grid">
+                                <div class="profile-info-item">
+                                    <label for="fullName">الاسم الكامل</label>
+                                    <input type="text" id="fullName" value="أثير قبلان منير الدوسري" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="studentId">الرقم الجامعي</label>
+                                    <input type="text" id="studentId" value="202500145" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="email">البريد الإلكتروني الجامعي</label>
+                                    <input type="email" id="email" value="s0549514131@gmail.com" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="phone">رقم الجوال</label>
+                                    <input type="tel" id="phone" value="0566781458" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>المعلومات الأكاديمية</h3>
+                            <div class="profile-info-grid">
+                                <div class="profile-info-item">
+                                    <label for="college">الكلية</label>
+                                    <input type="text" id="college" value="كلية   التربية" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="major">التخصص  </label>
+                                    <input type="text" id="major" value=" رياض أطفال" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="level">المستوى</label>
+                                    <input type="text" id="level" value="الأول" readonly>
+                                </div>
+                                <div class="profile-info-item">
+                                    <label for="fees">الرسوم (القسط الأول)</label>
+                                    <input type="text" id="fees" value="2000 ريال" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                حفظ التغييرات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section >
+
+            <section class="student-details">
+                <div class="settings-panel" id="security">
+                    <h2>الأمان</h2>
+                    <form id="securityForm">
+                        <div class="form-section">
+                            <h3>تغيير كلمة المرور</h3>
+                            <div class="form-group">
+                                <label for="currentPassword">كلمة المرور الحالية</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">كلمة المرور الجديدة</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">تأكيد كلمة المرور الجديدة</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>المصادقة الثنائية</h3>
+                            <div class="form-group">
+                                <label class="switch-label">
+                                    <input type="checkbox" id="twoFactor">
+                                    <span class="switch"></span>
+                                    تفعيل المصادقة الثنائية
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                حفظ التغييرات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section >
+
+            <section class="student-details">
+                <div class="settings-panel" id="notifications">
+                    <h2>الإشعارات</h2>
+                    <form id="notificationsForm">
+                        <div class="form-section">
+                            <h3>إعدادات الإشعارات</h3>
+                            <div class="notification-options">
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات التسجيل
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات الدرجات
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات الدفع
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        إشعارات المواعيد المهمة
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>طرق الإشعارات</h3>
+                            <div class="notification-methods">
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        البريد الإلكتروني
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <label class="switch-label">
+                                        <input type="checkbox" checked>
+                                        <span class="switch"></span>
+                                        الرسائل النصية
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </section >
+
+            <section class="student-details">
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                حفظ التغييرات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section >
+
+            <section class="student-details">
+                <div class="settings-panel" id="preferences">
+                    <h2>الترتيبات</h2>
+                    <form id="preferencesForm">
+                        <div class="form-section">
+                            <h3>اللغة</h3>
+                            <div class="form-group">
+                                <label for="language">اختر اللغة</label>
+                                <select id="language">
+                                    <option value="ar">العربية</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>المظهر</h3>
+                            <div class="form-group">
+                                <label for="theme">اختر المظهر</label>
+                                <select id="theme">
+                                    <option value="light">فاتح</option>
+                                    <option value="dark">داكن</option>
+                                    <option value="system">تلقائي</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                حفظ التغييرات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section >
+
+
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

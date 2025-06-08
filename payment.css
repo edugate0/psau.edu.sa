@@ -1,0 +1,707 @@
+/* تنسيقات نظام السداد */
+
+/* حالة السداد */
+.payment-status-section {
+    margin-bottom: 30px;
+}
+
+.status-outstanding {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    color: var(--danger-color);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.status-paid {
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.status-outstanding i,
+.status-paid i {
+    font-size: 1.5rem;
+}
+
+/* ملخص الرسوم */
+.fees-summary {
+    margin-bottom: 30px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.summary-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.summary-card.total .summary-icon {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.summary-card.paid .summary-icon {
+    background: linear-gradient(135deg, var(--secondary-color), #059669);
+}
+
+.summary-card.outstanding .summary-icon {
+    background: linear-gradient(135deg, var(--danger-color), #dc2626);
+}
+
+.summary-card.due-date .summary-icon {
+    background: linear-gradient(135deg, var(--warning-color), #d97706);
+}
+
+.summary-content h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.summary-content p {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+/* الفواتير المستحقة */
+.outstanding-invoices {
+    margin-bottom: 30px;
+}
+
+.outstanding-invoices h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.invoices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.invoice-card {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.invoice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.invoice-card.overdue {
+    border-color: var(--danger-color);
+}
+
+.invoice-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoice-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.invoice-amount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.invoice-details {
+    padding: 20px;
+}
+
+.invoice-details p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.invoice-details .label {
+    color: var(--dark-gray);
+}
+
+.invoice-details .value {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.overdue-badge {
+    background: var(--danger-color);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* طرق الدفع */
+.payment-methods {
+    margin-bottom: 30px;
+}
+
+.payment-methods h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.payment-option {
+    background: var(--white);
+    border: 2px solid var(--medium-gray);
+    border-radius: 15px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.payment-option:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.payment-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.option-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.option-content {
+    flex: 1;
+}
+
+.option-content h3 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.option-content p {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.option-radio {
+    flex-shrink: 0;
+}
+
+.option-radio input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+/* تفاصيل الدفع */
+.payment-details {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.payment-details h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* معلومات البنك */
+.bank-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.bank-details {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.bank-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.bank-item:last-child {
+    border-bottom: none;
+}
+
+.bank-item .label {
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+.bank-item .value {
+    color: var(--text-dark);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.transfer-note {
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    color: var(--primary-color);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* نموذج البطاقة الائتمانية */
+.card-form {
+    max-width: 500px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group.half {
+    flex: 0.5;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* معلومات سداد */
+.sadad-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.sadad-details {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.sadad-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.sadad-item:last-child {
+    border-bottom: none;
+}
+
+.sadad-item .label {
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+.sadad-item .value {
+    color: var(--text-dark);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.sadad-note {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--secondary-color);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* رفع الإيصال */
+.upload-area {
+    margin-bottom: 25px;
+}
+
+.upload-zone {
+    border: 3px dashed var(--medium-gray);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--light-gray);
+}
+
+.upload-zone:hover {
+    border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.upload-zone.dragover {
+    border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.upload-zone i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.upload-zone h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.upload-zone p {
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+}
+
+.upload-zone small {
+    color: var(--dark-gray);
+    font-size: 0.8rem;
+}
+
+.uploaded-file {
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    color: var(--secondary-color);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.uploaded-file i {
+    font-size: 1.5rem;
+}
+
+.file-info h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.file-info p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.remove-file {
+    margin-right: auto;
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+/* أزرار العمل */
+.payment-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.payment-actions .btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--dark-gray), #475569);
+    color: var(--white);
+}
+
+.payment-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* سجل المدفوعات */
+.payment-history {
+    margin-bottom: 30px;
+}
+
+.payment-history h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.history-list {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.history-item {
+    padding: 20px;
+    border-bottom: 1px solid var(--medium-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item:hover {
+    background: var(--light-gray);
+}
+
+.history-info h4 {
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.history-info p {
+    color: var(--dark-gray);
+    font-size: 0.85rem;
+}
+
+.history-amount {
+    text-align: left;
+}
+
+.history-amount .amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.history-amount .status {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.status-completed {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--secondary-color);
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--warning-color);
+}
+
+.status-failed {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger-color);
+}
+
+/* النافذة المنبثقة */
+.payment-summary h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.payment-summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.payment-summary-item:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-option {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .payment-actions {
+        flex-direction: column;
+    }
+    
+    .history-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .payment-details {
+        padding: 20px;
+    }
+    
+    .upload-zone {
+        padding: 30px 15px;
+    }
+    
+    .upload-zone i {
+        font-size: 2rem;
+    }
+}
+

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البطاقة الجامعية - بوابة الطالب</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="student-card.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="university-logo">
+                    <!-- شعار الجامعة SVG كصورة -->
+                    <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width:50px;height:50px;object-fit:contain;display:block;margin:0 auto;">
+                </div>
+                <h3>بوابة الطالب</h3>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="course-registration.html" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>تسجيل المقررات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="student-card.html" class="nav-link">
+                            <i class="fas fa-id-card"></i>
+                            <span>البطاقة الجامعية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="payment.html" class="nav-link">
+                            <i class="fas fa-credit-card"></i>
+                            <span>السداد</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html" class="nav-link">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>الفواتير</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="academic-record.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>السجل الأكاديمي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="schedule.html" class="nav-link">
+                            <i class="fas fa-calendar"></i>
+                            <span>الجدول الدراسي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="deferment.html" class="nav-link">
+                            <i class="fas fa-pause"></i>
+                            <span>التأجيل</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- الشريط العلوي -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>البطاقة الجامعية</h1>
+                    <p>عرض وطباعة البطاقة الجامعية</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="studentimage.jpg" alt="صورة الطالب" id="userImage" class="user-avatar">
+                        <div class="user-details">
+                            <span class="user-name" id="userName">أثير قبلان منير الدوسري</span>
+                            <span class="user-id">202500145</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- البطاقة الجامعية -->
+            <section class="student-card-section">
+                <div class="card-container">
+                    <!-- الوجه الأمامي للبطاقة -->
+                    <div class="student-card front">
+                        <div class="card-header">
+                            <div class="university-info">
+                                <div class="university-logo-card">
+                                    <!-- شعار الجامعة SVG كصورة -->
+                                    <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width:70px;height:70px;object-fit:contain;display:block;margin:0 auto;">
+                                </div>
+                                <div class="university-text">
+                                    <h2>جامعة الأمير سطام بن عبدالعزيز</h2>
+                                    <p>Prince Sattam bin Abdulaziz University</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="student-photo">
+                                <img src="studentimage.jpg" alt="صورة الطالب" id="cardStudentPhoto">
+                            </div>
+                            
+                            <div class="student-details">
+                                <div class="detail-row">
+                                    <span class="label">الاسم:</span>
+                                    <span class="value" id="cardStudentName">أثير قبلان منير الدوسري</span>
+                                </div>
+                                
+                                
+                                <div class="detail-row">
+                                    <span class="label">الرقم الجامعي:</span>
+                                    <span class="value" id="cardStudentId">202500145</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="label">الكلية:</span>
+                                    <span class="value" id="cardCollege">كلية التربية</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="label">التخصص:</span>
+                                    <span class="value" id="cardMajor">رياض اطفال</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="label">المستوى:</span>
+                                    <span class="value" id="cardLevel">المستوى الاول</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <div class="validity">
+                                <span class="label">صالحة حتى:</span>
+                                <span class="value" id="cardExpiry">2026/06/30</span>
+                            </div>
+                            <div class="card-number">
+                                <span id="cardNumber">PSU-2025-00145</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الوجه الخلفي للبطاقة -->
+                    <div class="student-card back">
+                        <div class="card-header">
+                            <h3>شروط وأحكام استخدام البطاقة</h3>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="terms-list">
+                                <ul>
+                                    <li>هذه البطاقة ملك للجامعة ويجب إعادتها عند الطلب</li>
+                                    <li>يجب على الطالب حمل البطاقة أثناء تواجده في الجامعة</li>
+                                    <li>في حالة فقدان البطاقة يجب إبلاغ الجامعة فوراً</li>
+                                    <li>لا يحق للطالب إعارة البطاقة لأي شخص آخر</li>
+                                    <li>البطاقة صالحة للعام الجامعي المحدد فقط</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="contact-info">
+                                <h4>للاستفسارات:</h4>
+                                <p><i class="fas fa-phone"></i> 011-588-8888</p>
+                                <p><i class="fas fa-envelope"></i> info@psau.edu.sa</p>
+                                <p><i class="fas fa-globe"></i> www.psau.edu.sa</p>
+                            </div>
+                            
+                            <div class="qr-code">
+                                <div class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>QR Code</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <p class="copyright">© 2025 جامعة الأمير سطام بن عبدالعزيز</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- أزرار التحكم -->
+                <div class="card-controls">
+                    <button class="btn btn-primary" onclick="flipCard()">
+                        <i class="fas fa-sync-alt"></i>
+                        قلب البطاقة
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="printCard()">
+                        <i class="fas fa-print"></i>
+                        طباعة البطاقة
+                    </button>
+                    
+                    <button class="btn btn-info" onclick="downloadCard()">
+                        <i class="fas fa-download"></i>
+                        تحميل البطاقة
+                    </button>
+                </div>
+            </section>
+            
+            <!-- معلومات إضافية -->
+            <section class="additional-info">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>معلومات البطاقة</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">تاريخ الإصدار:</span>
+                                <span class="info-value">2025/06/09</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">تاريخ الانتهاء:</span>
+                                <span class="info-value">2026/06/30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">حالة البطاقة:</span>
+                                <span class="info-value status-active">نشطة</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">رقم البطاقة:</span>
+                                <span class="info-value">PSU-2025-00145</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>خدمات البطاقة</h3>
+                        <div class="services-list">
+                            <div class="service-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>دخول المباني الجامعية</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-book"></i>
+                                <span>استعارة الكتب من المكتبة</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-utensils"></i>
+                                <span>الدفع في الكافتيريا</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-bus"></i>
+                                <span>استخدام المواصلات الجامعية</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-dumbbell"></i>
+                                <span>دخول الصالات الرياضية</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="student-card.js"></script>
+</body>
+</html>
+

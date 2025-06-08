@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعم الفني - جامعة الأمير سطام بن عبدالعزيز</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="support-container">
+        <div class="support-header">
+            <div class="university-logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>الدعم الفني</h1>
+            <p>نحن هنا لمساعدتك في حل أي مشكلة تقنية تواجهك</p>
+        </div>
+
+        <div class="support-content">
+            <div class="contact-form">
+                <h2>تواصل معنا</h2>
+                <form id="supportForm">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentId">الرقم الجامعي *</label>
+                        <input type="text" id="studentId" name="studentId" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issueType">نوع المشكلة *</label>
+                        <select id="issueType" name="issueType" required>
+                            <option value="">اختر نوع المشكلة</option>
+                            <option value="login">مشكلة في تسجيل الدخول</option>
+                            <option value="registration">مشكلة في التسجيل</option>
+                            <option value="payment">مشكلة في الدفع</option>
+                            <option value="other">مشكلة أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">وصف المشكلة *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال الطلب
+                    </button>
+                </form>
+            </div>
+
+            <div class="faq-section">
+                <h2>الأسئلة الشائعة</h2>
+                <div class="faq-item">
+                    <h3>كيف يمكنني استعادة كلمة المرور؟</h3>
+                    <p>يمكنك استعادة كلمة المرور من خلال صفحة تسجيل الدخول بالضغط على "نسيت كلمة المرور" وإدخال الرقم الجامعي والبريد الإلكتروني.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>كيف يمكنني تحديث بياناتي الشخصية؟</h3>
+                    <p>يمكنك تحديث بياناتك الشخصية من خلال لوحة التحكم في قسم "الملف الشخصي".</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>كيف يمكنني التواصل مع الدعم الفني؟</h3>
+                    <p>يمكنك التواصل مع الدعم الفني من خلال هذا النموذج أو عبر البريد الإلكتروني support@psau.edu.sa</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>معلومات الاتصال</h2>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p>هاتف الدعم الفني: 011-1234567</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p>البريد الإلكتروني: support@psau.edu.sa</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <p>ساعات العمل: من الأحد إلى الخميس، 8:00 صباحاً - 4:00 مساءً</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">العودة للصفحة الرئيسية</a>
+            <a href="privacy-policy.html" class="footer-link">سياسة الخصوصية</a>
+            <a href="terms.html" class="footer-link">الشروط والأحكام</a>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 جامعة الأمير سطام بن عبدالعزيز - جميع الحقوق محفوظة</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

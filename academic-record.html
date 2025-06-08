@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السجل الأكاديمي - جامعة الأمير سطام بن عبدالعزيز</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px 32px;
+            margin-bottom: 10px;
+        }
+        .info-item {
+            background: #f5f7fa;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 0;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .info-item .label {
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+        .info-item .value {
+            color: #1e293b;
+            font-size: 1.08rem;
+            font-weight: 500;
+            word-break: break-word;
+        }
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .dashboard-header .university-logo {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.10);
+            border: 2px solid #2563eb;
+        }
+        .dashboard-header .university-logo img {
+            width: 60px;
+            height: 60px;
+            display: block;
+        }
+        .courses-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+        }
+        .courses-table th, .courses-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .courses-table th {
+            background: #f5f7fa;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .courses-table tr:last-child td {
+            border-bottom: none;
+        }
+        .courses-table .no-data {
+            color: #888;
+            font-style: italic;
+            background: #f9fafb;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="university-logo">
+                <!-- شعار الجامعة SVG كصورة -->
+                <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز">
+            </div>
+            <h1>السجل الأكاديمي</h1>
+        </div>
+
+        <div class="student-info">
+            <div class="info-card">
+                <h3>المعلومات الشخصية</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">الاسم الكامل</span>
+                        <span class="value">أثير قبلان منير الدوسري</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">رقم الهوية</span>
+                        <span class="value">1139150252</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">الرقم الجامعي</span>
+                        <span class="value">202500145</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">البريد الإلكتروني</span>
+                        <span class="value">s0549514131@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">رقم الجوال</span>
+                        <span class="value">0566781458</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">التخصص</span>
+                        <span class="value specialty"> رياض أطفال</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="academic-summary">
+            <div class="summary-card">
+                <h3>ملخص أكاديمي</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <i class="fas fa-book"></i>
+                        <span class="label">عدد الساعات المسجلة</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="label">المعدل التراكمي</span>
+                        <span class="value">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="label">المستوى</span>
+                        <span class="value">الأول</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="courses-section">
+            <div class="section-header">
+                <h2>المقررات المسجلة</h2>
+                <div class="filters">
+                    <select id="semesterFilter">
+                        <option value="202501">الفصل الأول 2025</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="courses-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رمز المقرر</th>
+                            <th>اسم المقرر</th>
+                            <th>عدد الساعات</th>
+                            <th>المحاضر</th>
+                            <th>القاعة</th>
+                            <th>التوقيت</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="no-data">لا توجد مقررات مسجلة حتى الآن</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="dashboard.html" class="footer-link">العودة للوحة التحكم</a>
+            <a href="technical-support.html" class="footer-link">الدعم الفني</a>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 جامعة الأمير سطام بن عبدالعزيز - جميع الحقوق محفوظة</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
