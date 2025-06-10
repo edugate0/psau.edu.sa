@@ -11,9 +11,9 @@ const studentsData = {
         totalHours: 0,
         completedHours: 0,
         password: '1139150252',
-        paymentStatus: 'unpaid',
-        registrationBlocked: true,
-        outstandingAmount: 5000,
+        paymentStatus: 'paid',
+        registrationBlocked: false,
+        outstandingAmount: 0,
         profileImage: 'https://via.placeholder.com/150/2563eb/ffffff?text=س.أ'
     }
 };
@@ -186,31 +186,16 @@ function updateDashboardStats(user) {
 function updateNotifications(user) {
     const notificationsContainer = document.getElementById('notifications');
     if (!notificationsContainer) return;
-    
     const notifications = [];
-    
-    if (user.registrationBlocked) {
+    // لا تنبه بالحجب أبداً
+    if (user.outstandingAmount > 0) {
         notifications.push({
             type: 'warning',
             icon: 'fa-exclamation-triangle',
-            message: 'تسجيل المقررات محجوب حتى سداد الرسوم المستحقة'
+            message: 'يوجد مبلغ مستحق للسداد.'
         });
     }
-    
-    if (user.outstandingAmount > 0) {
-        notifications.push({
-            type: 'info',
-            icon: 'fa-credit-card',
-            message: `لديك رسوم مستحقة بقيمة ${user.outstandingAmount} ريال`
-        });
-    }
-    
-    notificationsContainer.innerHTML = notifications.map(notification => `
-        <div class="notification notification-${notification.type}">
-            <i class="fas ${notification.icon}"></i>
-            <span>${notification.message}</span>
-        </div>
-    `).join('');
+    notificationsContainer.innerHTML = notifications.map(n => `<div class="alert alert-${n.type}"><i class="fas ${n.icon}"></i> ${n.message}</div>`).join('');
 }
 
 // وظائف تسجيل المقررات
@@ -286,13 +271,8 @@ function registerCourse(courseId) {
     const user = getCurrentUser();
     if (!user) return;
     
-    if (user.registrationBlocked) {
-        showAlert('تسجيل المقررات محجوب حتى سداد الرسوم المستحقة', 'error');
-        return;
-    }
-    
     if (registeredCourses.includes(courseId)) {
-        showAlert('هذا المقرر مسجل مسبقاً', 'warning');
+        showAlert('المقرر مسجل بالفعل', 'error');
         return;
     }
     

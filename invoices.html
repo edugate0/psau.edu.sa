@@ -3,144 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الفواتير - جامعة الأمير سطام بن عبدالعزيز</title>
+    <title>الفواتير - بوابة الطالب</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="dashboard-header">
-            <div class="university-logo">
-                <!-- شعار الجامعة SVG كصورة -->
-                <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width:60px;height:60px;object-fit:contain;display:block;margin:0 auto;">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.svg" alt="شعار الجامعة" style="width:50px;height:50px;object-fit:contain;display:block;margin:0 auto;">
+                <h3>بوابة الطالب</h3>
             </div>
-            <h1>الفواتير</h1>
-        </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a></li>
+                    <li class="nav-item"><a href="course-registration.html" class="nav-link"><i class="fas fa-book"></i><span>تسجيل المقررات</span></a></li>
+                    <li class="nav-item"><a href="student-card.html" class="nav-link"><i class="fas fa-id-card"></i><span>البطاقة الجامعية</span></a></li>
+                    <li class="nav-item"><a href="payment.html" class="nav-link"><i class="fas fa-credit-card"></i><span>السداد</span></a></li>
+                    <li class="nav-item active"><a href="invoices.html" class="nav-link"><i class="fas fa-file-invoice"></i><span>الفواتير</span></a></li>
+                    <li class="nav-item"><a href="academic-record.html" class="nav-link"><i class="fas fa-chart-line"></i><span>السجل الأكاديمي</span></a></li>
+                    <li class="nav-item"><a href="schedule.html" class="nav-link"><i class="fas fa-calendar"></i><span>الجدول الدراسي</span></a></li>
+                    <li class="nav-item"><a href="postponement.html" class="nav-link"><i class="fas fa-pause"></i><span>التأجيل</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>الإعدادات</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>الفواتير</h1>
+                    <p>سجل الفواتير والمدفوعات</p>
+                </div>
+            </header>
 
-        <div class="financial-summary">
-            <div class="summary-card">
-                <h3>ملخص مالي</h3>
+            <!-- حالة الفواتير -->
+            <section class="invoices-status">
+                <div class="status-paid">
+                    <i class="fas fa-check-circle"></i>
+                    <span>تم سداد جميع الفواتير المستحقة</span>
+                </div>
+            </section>
+
+            <!-- ملخص الفواتير -->
+            <section class="invoices-summary">
                 <div class="summary-grid">
-                    <div class="summary-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span class="label">إجمالي الرسوم</span>
-                        <span class="value">2,000 ريال</span>
+                    <div class="summary-card total">
+                        <div class="summary-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>2000</h3>
+                            <p>إجمالي المدفوعات (ريال)</p>
+                        </div>
                     </div>
-                    <div class="summary-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="label">المدفوع</span>
-                        <span class="value">0 ريال</span>
+                    <div class="summary-card paid">
+                        <div class="summary-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>2000</h3>
+                            <p>المبلغ المدفوع (ريال)</p>
+                        </div>
                     </div>
-                    <div class="summary-item">
-                        <i class="fas fa-clock"></i>
-                        <span class="label">المستحق</span>
-                        <span class="value">2,000 ريال</span>
-                    </div>
-                    <div class="summary-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span class="label">تاريخ الاستحقاق</span>
-                        <span class="value">2025/06/09</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="invoices-section">
-            <div class="section-header">
-                <h2>الفواتير</h2>
-                <div class="filters">
-                    <select id="semesterFilter">
-                        <option value="202501">الفصل الأول 2025</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="invoices-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>رقم الفاتورة</th>
-                            <th>الفصل الدراسي</th>
-                            <th>تاريخ الإصدار</th>
-                            <th>تاريخ الاستحقاق</th>
-                            <th>المبلغ</th>
-                            <th>الحالة</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>INV-2025-001</td>
-                            <td>الفصل الأول 2025</td>
-                            <td>2025/06/08</td>
-                            <td>2025/06/09</td>
-                            <td>2,000 ريال</td>
-                            <td><span class="status pending">مستحقة</span></td>
-                            <td>
-                                <button class="action-btn view" onclick="showPaymentDetails()">
-                                    <i class="fas fa-eye"></i>
-                                    عرض
-                                </button>
-                                <button class="action-btn pay" onclick="showPaymentForm()">
-                                    <i class="fas fa-credit-card"></i>
-                                    دفع
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- نموذج الدفع -->
-        <div id="paymentForm" class="payment-form" style="display: none;">
-            <div class="form-container">
-                <h2>تفاصيل الدفع</h2>
-                <div class="bank-details">
-                    <h3>معلومات الحساب البنكي</h3>
-                    <div class="bank-info">
-                        <p><strong>اسم البنك:</strong> البنك  الراجحي</p>
-                        <p><strong>IBAN:</strong> SA5880000109608016558132</p>
+                    <div class="summary-card outstanding">
+                        <div class="summary-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>0</h3>
+                            <p>المبلغ المستحق (ريال)</p>
+                        </div>
                     </div>
                 </div>
-                <form id="receiptForm" class="receipt-form">
-                    <div class="form-group">
-                        <label for="receiptNumber">رقم إيصال السداد</label>
-                        <input type="text" id="receiptNumber" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="receiptDate">تاريخ السداد</label>
-                        <input type="date" id="receiptDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="receiptFile">إرفاق صورة الإيصال</label>
-                        <input type="file" id="receiptFile" accept="image/*,.pdf" required>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-upload"></i>
-                            رفع الإيصال
-                        </button>
-                        <button type="button" class="cancel-btn" onclick="hidePaymentForm()">
-                            <i class="fas fa-times"></i>
-                            إلغاء
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            </section>
 
-        <div class="footer-links">
-            <a href="dashboard.html" class="footer-link">العودة للوحة التحكم</a>
-            <a href="technical-support.html" class="footer-link">الدعم الفني</a>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2025 جامعة الأمير سطام بن عبدالعزيز - جميع الحقوق محفوظة</p>
-        </div>
+            <!-- سجل الفواتير -->
+            <section class="invoices-history">
+                <h2>سجل الفواتير</h2>
+                <div class="invoices-list">
+                    <div class="invoice-card paid">
+                        <div class="invoice-header">
+                            <h3>الرسوم الدراسية - الفصل الأول</h3>
+                            <span class="invoice-amount">2000 ريال</span>
+                        </div>
+                        <div class="invoice-details">
+                            <p>
+                                <span class="label">رقم الفاتورة:</span>
+                                <span class="value">INV-2025-001</span>
+                            </p>
+                            <p>
+                                <span class="label">تاريخ الدفع:</span>
+                                <span class="value">2025-06-09</span>
+                            </p>
+                            <p>
+                                <span class="label">طريقة الدفع:</span>
+                                <span class="value">تحويل بنكي</span>
+                            </p>
+                            <p>
+                                <span class="label">الحالة:</span>
+                                <span class="value paid">مدفوع</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-    
     <script src="script.js"></script>
 </body>
 </html>

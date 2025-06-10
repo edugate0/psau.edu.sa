@@ -6,136 +6,55 @@
     <title>تسجيل المقررات - بوابة الطالب</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="course-registration.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .course-card.locked {
-            opacity: 0.7;
-            pointer-events: none;
-            border: 1.5px solid #eab308;
-            background: #fffbe6;
-            position: relative;
-        }
-        .course-status.locked {
-            background: #eab308;
-            color: #fff;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            margin-right: 8px;
-        }
-        .course-lock-msg {
-            color: #b45309;
-            font-size: 0.98rem;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            justify-content: center;
-        }
-    </style>
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- الشريط الجانبي -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="university-logo">
-                    <img src="logo.svg" alt="شعار جامعة الأمير سطام بن عبدالعزيز" style="width:60px;height:60px;object-fit:contain;">
-                </div>
+                <img src="logo.svg" alt="شعار الجامعة" style="width:50px;height:50px;object-fit:contain;display:block;margin:0 auto;">
                 <h3>بوابة الطالب</h3>
-                <button class="sidebar-toggle" onclick="toggleSidebar()">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="nav-item">
-                        <a href="dashboard.html" class="nav-link">
-                            <i class="fas fa-home"></i>
-                            <span>الرئيسية</span>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a href="course-registration.html" class="nav-link">
-                            <i class="fas fa-book"></i>
-                            <span>تسجيل المقررات</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="student-card.html" class="nav-link">
-                            <i class="fas fa-id-card"></i>
-                            <span>البطاقة الجامعية</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="payment.html" class="nav-link">
-                            <i class="fas fa-credit-card"></i>
-                            <span>السداد</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="invoices.html" class="nav-link">
-                            <i class="fas fa-file-invoice"></i>
-                            <span>الفواتير</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="academic-record.html" class="nav-link">
-                            <i class="fas fa-chart-line"></i>
-                            <span>السجل الأكاديمي</span>
-                        </a>
-                    
-                    <li class="nav-item">
-                        <a href="settings.html" class="nav-link">
-                            <i class="fas fa-cog"></i>
-                            <span>الإعدادات</span>
-                        </a>
-                    </li>
+                    <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a></li>
+                    <li class="nav-item active"><a href="course-registration.html" class="nav-link"><i class="fas fa-book"></i><span>تسجيل المقررات</span></a></li>
+                    <li class="nav-item"><a href="student-card.html" class="nav-link"><i class="fas fa-id-card"></i><span>البطاقة الجامعية</span></a></li>
+                    <li class="nav-item"><a href="payment.html" class="nav-link"><i class="fas fa-credit-card"></i><span>السداد</span></a></li>
+                    <li class="nav-item"><a href="invoices.html" class="nav-link"><i class="fas fa-file-invoice"></i><span>الفواتير</span></a></li>
+                    <li class="nav-item"><a href="academic-record.html" class="nav-link"><i class="fas fa-chart-line"></i><span>السجل الأكاديمي</span></a></li>
+                    <li class="nav-item"><a href="schedule.html" class="nav-link"><i class="fas fa-calendar"></i><span>الجدول الدراسي</span></a></li>
+                    <li class="nav-item"><a href="postponement.html" class="nav-link"><i class="fas fa-pause"></i><span>التأجيل</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>الإعدادات</span></a></li>
                 </ul>
             </nav>
-            <div class="sidebar-footer">
-                <button class="logout-btn" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>تسجيل الخروج</span>
-                </button>
-            </div>
         </aside>
-        
-        <!-- المحتوى الرئيسي -->
         <main class="main-content">
-            <!-- الشريط العلوي -->
             <header class="top-header">
                 <div class="header-left">
                     <h1>تسجيل المقررات</h1>
-                    <p>إضافة وحذف المقررات الدراسية</p>
-                </div>
-                <div class="header-right">
-                    <div class="user-info">
-                        <img src="studentimage.jpg" alt="صورة الطالب" id="userImage" class="user-avatar">
-                        <div class="user-details">
-                            <span class="user-name" id="userName">أثير قبلان منير الدوسري</span>
-                            <span class="user-id">202500145</span>
-                        </div>
-                    </div>
+                    <p>الفصل الدراسي الأول 2025</p>
                 </div>
             </header>
-            
-            <!-- بيانات الطالبة -->
+
             <!-- حالة التسجيل -->
             <section class="registration-status">
-                <div id="registrationStatus" style="color:#b45309;font-weight:600;">
-                    لا يمكنك تسجيل المقررات حتى سداد الرسوم.
+                <div id="registrationStatus" class="status-available">
+                    <i id="statusIcon" class="fas fa-check-circle"></i>
+                    <div class="status-content">
+                        <h3 id="statusText">التسجيل متاح</h3>
+                        <p id="statusDescription">يمكنك إضافة أو إلغاء المقررات</p>
+                    </div>
                 </div>
             </section>
-            
+
             <!-- إحصائيات التسجيل -->
             <section class="registration-stats">
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-book-open"></i>
+                            <i class="fas fa-book"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="registeredCoursesCount">0</h3>
@@ -144,7 +63,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="stat-content">
                             <h3 id="totalCredits">0</h3>
@@ -156,7 +75,7 @@
                             <i class="fas fa-list"></i>
                         </div>
                         <div class="stat-content">
-                            <h3 id="availableCoursesCount">5</h3>
+                            <h3 id="availableCoursesCount">0</h3>
                             <p>المقررات المتاحة</p>
                         </div>
                     </div>
@@ -171,72 +90,58 @@
                     </div>
                 </div>
             </section>
-            
-            <!-- البحث والفلترة -->
-            <section class="search-filters">
-                <div class="search-container">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="courseSearch" placeholder="البحث عن مقرر..." onkeyup="filterCourses()">
-                    </div>
-                    <div class="filter-options">
-                        <select id="collegeFilter" onchange="filterCourses()">
-                            <option value="">جميع الكليات</option>
-                            <option value="EDU">التربية</option>
-                        </select>
-                        <select id="creditsFilter" onchange="filterCourses()">
-                            <option value="">جميع الساعات</option>
-                            <option value="2">ساعتان</option>
-                            <option value="3">3 ساعات</option>
-                        </select>
-                        <select id="statusFilter" onchange="filterCourses()">
-                            <option value="">جميع الحالات</option>
-                            <option value="locked">محجوب</option>
-                        </select>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- المقررات المسجلة -->
-            <section class="registered-courses-section">
-                <h2>المقررات المسجلة</h2>
-                <div id="registeredCourses" class="courses-grid">
-                    <div class="no-data" style="color:#888; font-size:1.1rem; background:#f9fafb; padding:20px; border-radius:10px;">
-                        لا توجد مقررات مسجلة حتى الآن
-                    </div>
-                </div>
-            </section>
-            
+
             <!-- المقررات المتاحة -->
-            <section class="available-courses-section">
-                <h2>المقررات المتاحة للتسجيل</h2>
-                <div id="availableCourses" class="courses-grid"></div>
+            <section class="available-courses">
+                <h2>المقررات المتاحة</h2>
+                <div id="coursesList" class="courses-grid">
+                    <!-- سيتم إضافة المقررات هنا عبر JavaScript -->
+                </div>
             </section>
-            
-            <!-- جدول الأوقات -->
-            <section class="schedule-preview">
-                <h2>معاينة الجدول الأسبوعي</h2>
-                <div class="schedule-table-container">
-                    <table class="schedule-table" id="scheduleTable">
-                        <thead>
-                            <tr>
-                                <th>الوقت</th>
-                                <th>الأحد</th>
-                                <th>الاثنين</th>
-                                <th>الثلاثاء</th>
-                                <th>الأربعاء</th>
-                                <th>الخميس</th>
-                            </tr>
-                        </thead>
-                        <tbody id="scheduleBody">
-                            <!-- سيتم ملؤها بواسطة JavaScript -->
-                        </tbody>
-                    </table>
+
+            <!-- المقررات المسجلة -->
+            <section class="registered-courses">
+                <h2>المقررات المسجلة</h2>
+                <div id="registeredCoursesList" class="courses-grid">
+                    <!-- سيتم إضافة المقررات المسجلة هنا عبر JavaScript -->
+                </div>
+            </section>
+
+            <!-- الجدول الدراسي -->
+            <section class="schedule">
+                <h2>الجدول الدراسي</h2>
+                <div id="scheduleTable" class="schedule-table">
+                    <!-- سيتم إضافة الجدول هنا عبر JavaScript -->
                 </div>
             </section>
         </main>
     </div>
-    <script src="script.js"></script>
-    <script src="course-registration.js"></script>
+    <!-- تحميل السكريبتات -->
+    <script>
+        // التأكد من تحميل الصفحة بالكامل
+        window.addEventListener('load', function() {
+            console.log('تم تحميل الصفحة بالكامل');
+            // التأكد من وجود العناصر
+            const coursesList = document.getElementById('coursesList');
+            const registeredCoursesList = document.getElementById('registeredCoursesList');
+            const scheduleTable = document.getElementById('scheduleTable');
+            
+            if (!coursesList || !registeredCoursesList || !scheduleTable) {
+                console.error('لم يتم العثور على بعض العناصر المطلوبة');
+                return;
+            }
+            
+            // تحميل السكريبتات
+            const script = document.createElement('script');
+            script.src = 'course-registration.js';
+            script.onload = function() {
+                console.log('تم تحميل ملف course-registration.js بنجاح');
+            };
+            script.onerror = function() {
+                console.error('حدث خطأ أثناء تحميل ملف course-registration.js');
+            };
+            document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html>

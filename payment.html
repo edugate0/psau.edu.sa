@@ -63,7 +63,18 @@
                             <span>السجل الأكاديمي</span>
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a href="schedule.html" class="nav-link">
+                            <i class="fas fa-calendar"></i>
+                            <span>الجدول الدراسي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="deferment.html" class="nav-link">
+                            <i class="fas fa-pause"></i>
+                            <span>التأجيل</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="settings.html" class="nav-link">
                             <i class="fas fa-cog"></i>
@@ -86,8 +97,8 @@
             <!-- الشريط العلوي -->
             <header class="top-header">
                 <div class="header-left">
-                    <h1>نظام السداد</h1>
-                    <p>دفع الرسوم الدراسية والخدمات</p>
+                    <h1>السداد</h1>
+                    <p>سداد الرسوم الدراسية</p>
                 </div>
                 <div class="header-right">
                     <div class="user-info">
@@ -101,8 +112,14 @@
             </header>
             
             <!-- حالة السداد -->
-            <section class="payment-status-section">
-                <div id="paymentStatus"></div>
+            <section class="payment-status">
+                <div class="status-paid">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="status-content">
+                        <h3>تم سداد جميع الرسوم</h3>
+                        <p>تم تحديث حسابك بنجاح</p>
+                    </div>
+                </div>
             </section>
             
             <!-- ملخص الرسوم -->
@@ -113,7 +130,7 @@
                             <i class="fas fa-calculator"></i>
                         </div>
                         <div class="summary-content">
-                            <h3 id="totalAmount">2000</h3>
+                            <h3>2000</h3>
                             <p>إجمالي الرسوم (ريال)</p>
                         </div>
                     </div>
@@ -123,17 +140,17 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="summary-content">
-                            <h3 id="paidAmount">0</h3>
+                            <h3>2000</h3>
                             <p>المبلغ المدفوع (ريال)</p>
                         </div>
                     </div>
                     
                     <div class="summary-card outstanding">
                         <div class="summary-icon">
-                            <i class="fas fa-exclamation-circle"></i>
+                            <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="summary-content">
-                            <h3 id="outstandingAmountDisplay">2000</h3>
+                            <h3>0</h3>
                             <p>المبلغ المستحق (ريال)</p>
                         </div>
                     </div>
@@ -153,11 +170,37 @@
             <!-- الفواتير المستحقة -->
             <section class="outstanding-invoices">
                 <h2>الفواتير المستحقة</h2>
-                <div id="outstandingInvoicesList" class="invoices-grid"></div>
+                <div id="outstandingInvoicesList" class="invoices-grid">
+                    <p class="no-courses">لا توجد فواتير مستحقة</p>
+                </div>
             </section>
             
-            <!-- طرق الدفع -->
-            <!-- تفاصيل الدفع -->
+            <!-- تفاصيل السداد -->
+            <section class="payment-details">
+                <h2>تفاصيل السداد</h2>
+                <div class="details-card">
+                    <div class="detail-item">
+                        <span class="label">رقم الفاتورة:</span>
+                        <span class="value">INV-2025-001</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">تاريخ السداد:</span>
+                        <span class="value">2025-06-09</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">طريقة السداد:</span>
+                        <span class="value">تحويل بنكي</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">حالة السداد:</span>
+                        <span class="value paid">مدفوع</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- معلومات الحساب البنكي -->
+        </main>
+    </div>
     <script src="script.js"></script>
     <script src="payment.js"></script>
 </body>

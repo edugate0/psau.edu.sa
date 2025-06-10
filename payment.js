@@ -3,6 +3,21 @@
 let selectedPaymentMethod = null;
 let uploadedReceipt = null;
 
+// بيانات الطالب الحالي
+const currentUser = {
+    id: '202500145',
+    name: 'أثير قبلان منير الدوسري',
+    college: 'التربية',
+    department: 'التربية الخاصة',
+    level: 'الثالث',
+    semester: 'الأول',
+    academicYear: '2025',
+    paymentStatus: 'paid',
+    outstandingAmount: 0,
+    registrationBlocked: false,
+    registeredCourses: []
+};
+
 // تحميل صفحة السداد
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('payment.html')) {
@@ -21,21 +36,17 @@ function loadPaymentPage() {
 }
 
 function updatePaymentStatus(user) {
-    const statusElement = document.getElementById('paymentStatus');
+    const statusElement = document.querySelector('.payment-status');
     if (!statusElement) return;
-    
-    if (user.outstandingAmount > 0) {
-        statusElement.innerHTML = `
-            <div class="status-outstanding">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>يوجد مبلغ مستحق قدره ${user.outstandingAmount} ريال - يرجى السداد لتجنب حجب الخدمات</span>
-            </div>
-        `;
-    } else {
+
+    if (user.paymentStatus === 'paid') {
         statusElement.innerHTML = `
             <div class="status-paid">
                 <i class="fas fa-check-circle"></i>
-                <span>تم سداد جميع الرسوم المستحقة - حسابك محدث</span>
+                <div class="status-content">
+                    <h3>تم سداد جميع الرسوم</h3>
+                    <p>تم تحديث حسابك بنجاح</p>
+                </div>
             </div>
         `;
     }
@@ -47,37 +58,24 @@ function getCurrentUser() {
         profileImage: "https://via.placeholder.com/120/2563eb/ffffff?text=س.أ",
         name: "أثير قبلان منير الدوسري",
         id: "202500145",
-        college: "كلية العلوم والدراسات الإنسانية",
+        college: "   ",
         major: "بكالوريوس رياض أطفال",
         level: "الأول",
-        outstandingAmount: 2000, // المبلغ المستحق
-        registrationBlocked: true // الحجب حتى السداد
+        outstandingAmount: 0, // تم السداد
+        registrationBlocked: false, // تم إلغاء الحجب
+        paymentStatus: 'paid',
+        registeredCourses: []
     };
 }
 
 function updateFeesSummary(user) {
-    const totalAmount = 2000; // إجمالي الرسوم الدراسية
-    const paidAmount = 0;     // الرسوم المدفوعة صفر دائماً هنا
-    
-    const summaryData = {
-        'totalAmount': totalAmount,
-        'paidAmount': paidAmount,
-        'outstandingAmountDisplay': user.outstandingAmount,
-        'dueDate': '2025-06-09'
-    };
-    
-    Object.entries(summaryData).forEach(([id, value]) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
-        }
-    });
-    
-    // تحديث مبلغ سداد
-    const sadadAmountElement = document.getElementById('sadadAmount');
-    if (sadadAmountElement) {
-        sadadAmountElement.textContent = `${user.outstandingAmount} ريال`;
-    }
+    const totalAmount = document.querySelector('.summary-card.total h3');
+    const paidAmount = document.querySelector('.summary-card.paid h3');
+    const outstandingAmount = document.querySelector('.summary-card.outstanding h3');
+
+    if (totalAmount) totalAmount.textContent = '2000';
+    if (paidAmount) paidAmount.textContent = '2000';
+    if (outstandingAmount) outstandingAmount.textContent = '0';
 }
 
 function displayOutstandingInvoices(user) {

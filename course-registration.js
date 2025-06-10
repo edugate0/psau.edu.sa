@@ -1,195 +1,336 @@
-// بيانات مقررات رياض الأطفال (محجوبة)
+// بيانات الطالب الحالي
+const currentUser = {
+    id: '202500145',
+    name: 'أثير قبلان منير الدوسري',
+    college: 'التربية',
+    department: 'التربية الخاصة',
+    level: 'الثالث',
+    semester: 'الأول',
+    academicYear: '2025',
+    paymentStatus: 'paid',
+    outstandingAmount: 0,
+    registrationBlocked: false,
+    registeredCourses: []
+};
+
+// المقررات المتاحة
 const availableCourses = [
     {
-        id: "EDU101",
-        code: "EDU101",
-        name: "مدخل إلى رياض الأطفال",
-        credits: 3,
-        instructor: "د. سارة العتيبي",
-        room: "قاعة 201",
-        time: "الأحد 10-12",
-        status: "locked"
+        code: 'EDU101',
+        name: 'أصول التربية',
+        instructor: 'د. أحمد محمد',
+        time: '8:00 - 9:30',
+        room: 'قاعة 101',
+        credits: 3
     },
     {
-        id: "EDU102",
-        code: "EDU102",
-        name: "أسس التربية",
-        credits: 2,
-        instructor: "د. منى السبيعي",
-        room: "قاعة 105",
-        time: "الإثنين 8-10",
-        status: "locked"
+        code: 'EDU102',
+        name: 'علم النفس التربوي',
+        instructor: 'د. سارة عبدالله',
+        time: '10:00 - 11:30',
+        room: 'قاعة 102',
+        credits: 3
     },
     {
-        id: "PSY101",
-        code: "PSY101",
-        name: "مدخل إلى علم النفس",
-        credits: 3,
-        instructor: "د. ريم الحربي",
-        room: "قاعة 210",
-        time: "الثلاثاء 12-2",
-        status: "locked"
+        code: 'EDU103',
+        name: 'مناهج وطرق تدريس',
+        instructor: 'د. محمد علي',
+        time: '12:00 - 1:30',
+        room: 'قاعة 103',
+        credits: 3
     },
     {
-        id: "ARAB101",
-        code: "ARAB101",
-        name: "مهارات اللغة العربية",
-        credits: 2,
-        instructor: "د. فهد الدوسري",
-        room: "قاعة 120",
-        time: "الأربعاء 9-11",
-        status: "locked"
-    },
-    {
-        id: "ENG101",
-        code: "ENG101",
-        name: "مهارات اللغة الإنجليزية",
-        credits: 2,
-        instructor: "أ. هدى الشمري",
-        room: "قاعة 130",
-        time: "الخميس 11-1",
-        status: "locked"
+        code: 'EDU104',
+        name: 'تقنيات التعليم',
+        instructor: 'د. فاطمة أحمد',
+        time: '2:00 - 3:30',
+        room: 'قاعة 104',
+        credits: 3
     }
 ];
 
-// جميع المقررات محجوبة
-const registrationBlocked = true;
-
-// وظائف تسجيل المقررات
-
-let filteredCourses = [...availableCourses];
-let currentAction = null;
-let currentCourseId = null;
-
-// تحميل صفحة تسجيل المقررات
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.pathname.includes('course-registration.html')) {
-        loadCourseRegistration();
-        generateScheduleTable();
+// تحميل المقررات المسجلة من localStorage
+function loadRegisteredCourses() {
+    const savedCourses = localStorage.getItem('registeredCourses');
+    if (savedCourses) {
+        currentUser.registeredCourses = JSON.parse(savedCourses);
+        console.log('تم تحميل المقررات المسجلة من التخزين المحلي');
     }
-});
-
-function loadCourseRegistration() {
-    const user = getCurrentUser();
-    if (!user) return;
-    
-    updateRegistrationStatus(user);
-    updateRegistrationStats();
-    displayAvailableCourses();
-    displayRegisteredCourses();
-    updateSchedulePreview();
 }
 
-function updateRegistrationStatus(user) {
+// حفظ المقررات المسجلة في localStorage
+function saveRegisteredCourses() {
+    localStorage.setItem('registeredCourses', JSON.stringify(currentUser.registeredCourses));
+    console.log('تم حفظ المقررات المسجلة في التخزين المحلي');
+}
+
+// تحديث حالة التسجيل
+function updateRegistrationStatus() {
+    console.log('تحديث حالة التسجيل');
     const statusElement = document.getElementById('registrationStatus');
-    if (!statusElement) return;
-    
-    if (user.registrationBlocked) {
-        statusElement.innerHTML = `
-            <div class="status-blocked">
-                <i class="fas fa-lock"></i>
-                <span>تسجيل المقررات محجوب حتى سداد الرسوم المستحقة (${user.outstandingAmount} ريال)</span>
-            </div>
-        `;
+    const statusIcon = document.getElementById('statusIcon');
+    const statusText = document.getElementById('statusText');
+    const statusDescription = document.getElementById('statusDescription');
+
+    if (!statusElement || !statusIcon || !statusText || !statusDescription) {
+        console.error('لم يتم العثور على عناصر حالة التسجيل');
+        return;
+    }
+
+    if (currentUser.registrationBlocked) {
+        statusElement.className = 'status-blocked';
+        statusIcon.className = 'fas fa-ban';
+        statusText.textContent = 'التسجيل غير متاح';
+        statusDescription.textContent = 'يرجى سداد الرسوم المستحقة لتفعيل التسجيل';
     } else {
-        statusElement.innerHTML = `
-            <div class="status-active">
-                <i class="fas fa-check-circle"></i>
-                <span>تسجيل المقررات متاح - يمكنك إضافة وحذف المقررات</span>
-            </div>
-        `;
+        statusElement.className = 'status-available';
+        statusIcon.className = 'fas fa-check-circle';
+        statusText.textContent = 'التسجيل متاح';
+        statusDescription.textContent = 'يمكنك إضافة أو إلغاء المقررات';
     }
 }
 
+// عرض المقررات المتاحة
+function displayAvailableCourses() {
+    console.log('عرض المقررات المتاحة');
+    const coursesList = document.getElementById('coursesList');
+    if (!coursesList) {
+        console.error('لم يتم العثور على عنصر قائمة المقررات المتاحة');
+        return;
+    }
+
+    coursesList.innerHTML = '';
+
+    availableCourses.forEach(course => {
+        const courseCard = document.createElement('div');
+        courseCard.className = 'course-card';
+        courseCard.innerHTML = `
+            <div class="course-header">
+                <h3>${course.name}</h3>
+                <span class="course-code">${course.code}</span>
+            </div>
+            <div class="course-details">
+                <p><i class="fas fa-user"></i> ${course.instructor}</p>
+                <p><i class="fas fa-clock"></i> ${course.time}</p>
+                <p><i class="fas fa-door-open"></i> ${course.room}</p>
+                <p><i class="fas fa-graduation-cap"></i> ${course.credits} ساعات</p>
+            </div>
+            <button class="register-btn" onclick="registerCourse('${course.code}')">
+                <i class="fas fa-plus"></i>
+                تسجيل
+            </button>
+        `;
+        coursesList.appendChild(courseCard);
+    });
+}
+
+// عرض المقررات المسجلة
+function displayRegisteredCourses() {
+    console.log('عرض المقررات المسجلة');
+    const registeredCoursesList = document.getElementById('registeredCoursesList');
+    if (!registeredCoursesList) {
+        console.error('لم يتم العثور على عنصر قائمة المقررات المسجلة');
+        return;
+    }
+
+    if (currentUser.registeredCourses.length === 0) {
+        registeredCoursesList.innerHTML = `
+            <div class="no-courses">
+                <i class="fas fa-book"></i>
+                <p>لا توجد مقررات مسجلة</p>
+            </div>
+        `;
+        return;
+    }
+
+    registeredCoursesList.innerHTML = '';
+
+    currentUser.registeredCourses.forEach(course => {
+        const courseCard = document.createElement('div');
+        courseCard.className = 'course-card registered';
+        courseCard.innerHTML = `
+            <div class="course-header">
+                <h3>${course.name}</h3>
+                <span class="course-code">${course.code}</span>
+            </div>
+            <div class="course-details">
+                <p><i class="fas fa-user"></i> ${course.instructor}</p>
+                <p><i class="fas fa-clock"></i> ${course.time}</p>
+                <p><i class="fas fa-door-open"></i> ${course.room}</p>
+                <p><i class="fas fa-graduation-cap"></i> ${course.credits} ساعات</p>
+            </div>
+            <button class="register-btn" onclick="cancelRegistration('${course.code}')">
+                <i class="fas fa-times"></i>
+                إلغاء التسجيل
+            </button>
+        `;
+        registeredCoursesList.appendChild(courseCard);
+    });
+}
+
+// تسجيل مقرر
+function registerCourse(courseCode) {
+    console.log('تسجيل مقرر:', courseCode);
+    const course = availableCourses.find(c => c.code === courseCode);
+    if (!course) {
+        console.error('لم يتم العثور على المقرر:', courseCode);
+        return;
+    }
+
+    // التحقق من عدم وجود تعارض في المواعيد
+    const hasConflict = currentUser.registeredCourses.some(registeredCourse => {
+        return registeredCourse.time === course.time;
+    });
+
+    if (hasConflict) {
+        alert('تعذر التسجيل: يوجد تعارض في مواعيد المحاضرات');
+        return;
+    }
+
+    // التحقق من عدد الساعات المسجلة
+    const totalCredits = currentUser.registeredCourses.reduce((sum, c) => sum + c.credits, 0) + course.credits;
+    if (totalCredits > 21) {
+        alert('تعذر التسجيل: تجاوز الحد الأقصى للساعات المسجلة');
+        return;
+    }
+
+    // إضافة المقرر للمقررات المسجلة
+    currentUser.registeredCourses.push(course);
+    
+    // حفظ المقررات المسجلة
+    saveRegisteredCourses();
+    
+    // تحديث الإحصائيات
+    updateRegistrationStats();
+    
+    // تحديث قائمة المقررات المسجلة
+    displayRegisteredCourses();
+    
+    // تحديث الجدول الدراسي
+    updateSchedule();
+    
+    // إظهار رسالة نجاح
+    alert('تم تسجيل المقرر بنجاح');
+}
+
+// إلغاء تسجيل مقرر
+function cancelRegistration(courseCode) {
+    console.log('إلغاء تسجيل مقرر:', courseCode);
+    const courseIndex = currentUser.registeredCourses.findIndex(c => c.code === courseCode);
+    if (courseIndex === -1) {
+        console.error('لم يتم العثور على المقرر المسجل:', courseCode);
+        return;
+    }
+
+    // إزالة المقرر من المقررات المسجلة
+    currentUser.registeredCourses.splice(courseIndex, 1);
+    
+    // حفظ المقررات المسجلة
+    saveRegisteredCourses();
+    
+    // تحديث الإحصائيات
+    updateRegistrationStats();
+    
+    // تحديث قائمة المقررات المسجلة
+    displayRegisteredCourses();
+    
+    // تحديث الجدول الدراسي
+    updateSchedule();
+    
+    // إظهار رسالة نجاح
+    alert('تم إلغاء تسجيل المقرر بنجاح');
+}
+
+// تحديث الإحصائيات
 function updateRegistrationStats() {
-    const totalCredits = registeredCourses.reduce((sum, courseId) => {
-        const course = availableCourses.find(c => c.id === courseId);
-        return sum + (course ? course.credits : 0);
-    }, 0);
-    
-    const stats = {
-        'registeredCoursesCount': registeredCourses.length,
-        'totalCredits': totalCredits,
-        'availableCoursesCount': availableCourses.filter(c => c.status === 'available').length,
-        'conflictsCount': checkTimeConflicts().length
-    };
-    
-    Object.entries(stats).forEach(([id, value]) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
+    console.log('تحديث الإحصائيات');
+    const registeredCoursesCount = document.getElementById('registeredCoursesCount');
+    const totalCredits = document.getElementById('totalCredits');
+    const availableCoursesCount = document.getElementById('availableCoursesCount');
+    const conflictsCount = document.getElementById('conflictsCount');
+
+    if (registeredCoursesCount) registeredCoursesCount.textContent = currentUser.registeredCourses.length;
+    if (totalCredits) totalCredits.textContent = currentUser.registeredCourses.reduce((sum, course) => sum + course.credits, 0);
+    if (availableCoursesCount) availableCoursesCount.textContent = availableCourses.length;
+    if (conflictsCount) conflictsCount.textContent = '0';
+}
+
+// تحديث الجدول الدراسي
+function updateSchedule() {
+    console.log('تحديث الجدول الدراسي');
+    const scheduleTable = document.getElementById('scheduleTable');
+    if (!scheduleTable) {
+        console.error('لم يتم العثور على عنصر الجدول الدراسي');
+        return;
+    }
+
+    const timeSlots = ['8:00 - 9:30', '10:00 - 11:30', '12:00 - 1:30', '2:00 - 3:30'];
+    const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+
+    // إنشاء مصفوفة لتخزين المقررات في كل خلية
+    const schedule = Array(timeSlots.length).fill().map(() => Array(days.length).fill(null));
+
+    // توزيع المقررات على الأيام
+    currentUser.registeredCourses.forEach(course => {
+        const timeIndex = timeSlots.indexOf(course.time);
+        if (timeIndex !== -1) {
+            // توزيع المقرر على يوم واحد في الأسبوع
+            const availableDays = days.map((_, index) => index).filter(dayIndex => 
+                !schedule[timeIndex][dayIndex]
+            );
+            
+            if (availableDays.length > 0) {
+                // اختيار يوم واحد عشوائي
+                const dayIndex = availableDays[Math.floor(Math.random() * availableDays.length)];
+                schedule[timeIndex][dayIndex] = course;
+            }
         }
     });
-}
 
-// عرض المقررات المتاحة (محجوبة)
-function displayAvailableCourses() {
-    const container = document.getElementById('availableCourses');
-    if (!container) return;
-    container.innerHTML = availableCourses.map(course => `
-        <div class="course-card locked">
-            <div class="course-header">
-                <span class="course-code">${course.code}</span>
-                <span class="course-status locked">محجوب</span>
-            </div>
-            <div class="course-title">${course.name}</div>
-            <div class="course-details">
-                <span><i class="fas fa-user"></i> ${course.instructor}</span>
-                <span><i class="fas fa-clock"></i> ${course.time}</span>
-                <span><i class="fas fa-door-open"></i> ${course.room}</span>
-                <span><i class="fas fa-layer-group"></i> ${course.credits} ساعات</span>
-            </div>
-            <div class="course-lock-msg">
-                <i class="fas fa-lock"></i> لن تتمكن من التسجيل إلا بعد سداد الرسوم
-            </div>
-        </div>
-    `).join('');
-}
-
-// البحث والفلترة (تعمل فقط على اسم المقرر)
-function filterCourses() {
-    const search = document.getElementById('courseSearch').value.trim();
-    const college = document.getElementById('collegeFilter').value;
-    const credits = document.getElementById('creditsFilter').value;
-    const status = document.getElementById('statusFilter').value;
-
-    let filtered = availableCourses.filter(course => {
-        let match = true;
-        if (search && !course.name.includes(search)) match = false;
-        if (college && college !== "EDU") match = false;
-        if (credits && course.credits.toString() !== credits) match = false;
-        if (status && status !== "locked") match = false;
-        return match;
+    // إنشاء الجدول
+    let tableHTML = '<table>';
+    
+    // رأس الجدول
+    tableHTML += '<thead><tr><th>الوقت</th>';
+    days.forEach(day => {
+        tableHTML += `<th>${day}</th>`;
     });
-
-    const container = document.getElementById('availableCourses');
-    if (!container) return;
-    if (filtered.length === 0) {
-        container.innerHTML = `<div class="no-data" style="color:#888; font-size:1.1rem; background:#f9fafb; padding:20px; border-radius:10px;">لا توجد مقررات مطابقة</div>`;
-    } else {
-        container.innerHTML = filtered.map(course => `
-            <div class="course-card locked">
-                <div class="course-header">
-                    <span class="course-code">${course.code}</span>
-                    <span class="course-status locked">محجوب</span>
-                </div>
-                <div class="course-title">${course.name}</div>
-                <div class="course-details">
-                    <span><i class="fas fa-user"></i> ${course.instructor}</span>
-                    <span><i class="fas fa-clock"></i> ${course.time}</span>
-                    <span><i class="fas fa-door-open"></i> ${course.room}</span>
-                    <span><i class="fas fa-layer-group"></i> ${course.credits} ساعات</span>
-                </div>
-                <div class="course-lock-msg">
-                    <i class="fas fa-lock"></i> لن تتمكن من التسجيل إلا بعد سداد الرسوم
-                </div>
-            </div>
-        `).join('');
-    }
+    tableHTML += '</tr></thead>';
+    
+    // محتوى الجدول
+    tableHTML += '<tbody>';
+    timeSlots.forEach((timeSlot, timeIndex) => {
+        tableHTML += '<tr>';
+        tableHTML += `<td>${timeSlot}</td>`;
+        
+        days.forEach((day, dayIndex) => {
+            const course = schedule[timeIndex][dayIndex];
+            if (course) {
+                tableHTML += `
+                    <td class="course-slot">
+                        <div class="course-info">
+                            <h4>${course.name}</h4>
+                            <p>${course.code}</p>
+                            <p>${course.room}</p>
+                        </div>
+                    </td>`;
+            } else {
+                tableHTML += '<td></td>';
+            }
+        });
+        
+        tableHTML += '</tr>';
+    });
+    tableHTML += '</tbody></table>';
+    
+    scheduleTable.innerHTML = tableHTML;
 }
 
-// عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    displayAvailableCourses();
-});
-
+// تحديث الصفحة عند التحميل
+console.log('بدء تحميل الصفحة');
+loadRegisteredCourses(); // تحميل المقررات المسجلة من التخزين المحلي
+updateRegistrationStatus();
+displayAvailableCourses();
+displayRegisteredCourses();
+updateRegistrationStats();
+updateSchedule(); 
